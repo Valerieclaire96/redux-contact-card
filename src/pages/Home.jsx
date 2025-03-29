@@ -1,16 +1,18 @@
-import rigoImageUrl from "../assets/img/rigo-baby.jpg";
+import React, {useState, useEffect} from "react";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 
 export const Home = () => {
 
   const {store, dispatch} =useGlobalReducer()
 
+  //agendas = your user
+
 	return (
 		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
-			<p>
-				<img src={rigoImageUrl} />
-			</p>
+			{/* {store.contacts?.maps(contact,index)(
+				<p>{contact.name}</p>
+			)} */}
+			
 		</div>
 	);
 }; 
