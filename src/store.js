@@ -15,7 +15,7 @@ export default function storeReducer(store, action = {}) {
         agenda: action.payload.agenda, 
         contacts: action.payload.contacts
       };
-    case 'set_contacts' :
+    case 'set_contacts' : 
       return {...store, contacts: action.payload.contacts}
     default:
       throw Error('Unknown action.');
