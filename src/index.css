@@ -1,0 +1,10 @@
+body {
+    background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20210312/pngtree-colorful-tetris-lego-blocks-background-image_584426.jpg");
+    background-size:  no-repeat;
+}
+nav {
+    background-color:#FFD700;
+}
+.card-body, .container, .modal-header {
+    background-color: rgba(8, 152, 27, 0.442);
+}

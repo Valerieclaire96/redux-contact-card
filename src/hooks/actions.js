@@ -1,8 +1,8 @@
-export const fetchAgenda = async (dispatch) => {
+export const fetchAgenda = async (dispatch, payload) => {
     let response = await fetch("https://playground.4geeks.com/contact/agendas/valerieclaire96")
     let data = await response.json()
 
-    if(data.detail == "User valerieclaire96 doesn't exist.") {
+    if(data.detail == `Agenda "valerieclaire96" doesn't exist.`) {
         createAgenda()
     }
     dispatch({
@@ -10,19 +10,19 @@ export const fetchAgenda = async (dispatch) => {
         payload: { agenda:data.slug, contacts:data.contacts },
     });
 }
-export const createAgenda = async (dispatch) => {
-    let response = await fetch("'https://playground.4geeks.com/contact/agendas/valerieclaire96'", {
+export const createAgenda = async (dispatch, payload) => {
+    let response = await fetch("https://playground.4geeks.com/contact/agendas/valerieclaire96", {
         method: "POST",
         headers: { "Content-type": "application/json" }
     })
-    let data = response.json()
+    let data = await response.json()
     // fetchAgenda()
 }
-export const createContact = async (dispatch) => {
-    let inputName = dispatch.name;
-    let inputPhone = dispatch.phone;
-    let inputEmail = dispatch.email;
-    let inputAddress = dispatch.address;
+export const postContact = async (dispatch, payload) => {
+    let inputName = payload.name;
+    let inputPhone = payload.phone;
+    let inputEmail = payload.email;
+    let inputAddress = payload.address;
     
     let response = await fetch('https://playground.4geeks.com/contact/agendas/valerieclaire96/contacts', {
         method: "POST",
@@ -34,22 +34,22 @@ export const createContact = async (dispatch) => {
             address: inputAddress
         })
     })
-    getContacts()
+    getContacts(dispatch)
 }
-export const getContacts = async (dispatch) => {
-    let response = await fetch("'https://playground.4geeks.com/contact/agendas/valerieclaire96/contacts'")
+export const getContacts = async (dispatch, payload) => {
+    let response = await fetch("https://playground.4geeks.com/contact/agendas/valerieclaire96/contacts")
     let data = await response.json();
     dispatch({
         type: "set_contacts",
         payload: { contacts:data.contacts },
     });
 }
-export const updateContact = async (dispatch) => {
-    let updatedName = dispatch.name;
-    let updatedPhone = dispatch.phone;
-    let updatedEmail = dispatch.email;
-    let updatedAddress = dispatch.address;
-    let id = dispatch.id
+export const updateContact = async (dispatch, payload) => {
+    let updatedName = payload.name;
+    let updatedPhone = payload.phone;
+    let updatedEmail = payload.email;
+    let updatedAddress = payload.address;
+    let id = payload.id
 
     let response = await fetch(`https://playground.4geeks.com/contact/agendas/valerieclaire96/contacts/${id}`, {
         method: "PUT",
@@ -61,13 +61,13 @@ export const updateContact = async (dispatch) => {
             address: updatedAddress
         })
     })
-    getContacts()
+    getContacts(dispatch)
 }
-export const deleteContact = async (dispatch) => {
-    let response = await fetch(` https://playground.4geeks.com/contact/agendas/valerieclaire96%40gmail.com/contacts/${id}`, {
+export const deleteContact = async (dispatch, payload) => {
+    let response = await fetch(`https://playground.4geeks.com/contact/agendas/valerieclaire96/contacts/${payload}`, {
         method: "DELETE",
         headers: { "Content-type": "application/json" },
     })
-    getContacts()
+    getContacts(dispatch)
 }
 

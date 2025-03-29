@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom";
+import LegoButton from "./legoButton.jsx";
 
 export const Navbar = () => {
 
 	return (
-		<nav className="navbar navbar-light bg-light">
-			<div className="container">
+		<nav className="navbar">
+			<div className="container-fluid">
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+					<img src="https://i.pinimg.com/564x/ce/94/a7/ce94a7069eca50b16d3a047af943d20b.jpg" height="50rem" alt="lego logo" />
 				</Link>
 				<div className="ml-auto">
-					<Link to="/demo">
-						<button className="btn btn-primary">Check the Context in action</button>
-					</Link>
+					<Link to={"/create"} className="btn"><LegoButton display={"Create"} color={"red"} /></Link>
 				</div>
 			</div>
 		</nav>
